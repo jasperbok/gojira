@@ -2,7 +2,6 @@ package jira
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
 )
 
@@ -31,7 +30,7 @@ func GetProject(keyOrId string) (p Project, err error) {
 	}
 
 	if status == 404 {
-		return p, errors.New("404")
+		return p, &JiraError{404, "Project not found"}
 	}
 
 	err = json.Unmarshal(res, &p)

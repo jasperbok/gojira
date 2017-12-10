@@ -2,7 +2,6 @@ package jira
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
 )
 
@@ -27,10 +26,10 @@ func GetUser(usernameOrKey string, usingUsername bool) (user User, err error) {
 
 	switch status {
 	case 401:
-		err = errors.New("401")
+		err = &JiraError{401, "You are not authenticated"}
 		return
 	case 404:
-		err = errors.New("404")
+		err = &JiraError{404, "User not found"}
 		return
 	}
 

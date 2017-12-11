@@ -8,7 +8,7 @@ import (
 	"os"
 )
 
-const API_URL = "https://fluxility.atlassian.net/rest/api/latest"
+var API_URL = os.Getenv("JIRA_DOMAIN")+"/rest/api/latest"
 
 func jiraGetAuth() (username, password string) {
 	return os.Getenv("JIRA_USER"), os.Getenv("JIRA_PASS")
